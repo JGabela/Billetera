@@ -4,7 +4,7 @@ public class Usuario {
     protected int id;
     protected String nombre;
     protected String apellido;
-    private double saldo;
+    //private double saldo;
 
     //Un array list para almacenar los contactos guardados del usuario
     private ArrayList<Contactos> contactos;
@@ -12,12 +12,15 @@ public class Usuario {
     //Un array list para almacenar las transacciones del usuario
     private ArrayList<gestionTransacciones> transacciones;
 
+    //Un array list para almacenar las tarjetas
+    private ArrayList<Tarjeta> tarjetas;
+
 
     public Usuario(int id, String nombre, String apellido){
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.saldo = 0.0; //El saldo por defecto es 0
+        //this.saldo = 0.0; //El saldo por defecto es 0
         this.contactos = new ArrayList<>(); //Se crea el array list de los contactos al usuario
         this.transacciones = new ArrayList<>(); //Se crea el array list de las transacciones al usuario
     }

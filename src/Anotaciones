@@ -1,4 +1,21 @@
 Se necesita una billetera virtual para que usuarios puedan, recargar saldo, retirar y transferir a otros usuarios-
-por alias y pagar servicios. El sistema debe permitir consultar saldos e historial -
+por alias y pagar servicios (luz, agua, telefonia). El sistema debe permitir consultar saldos e historial -
 y cargar datos desde archivos (ej. CSV) para inicializar usuarios/servicios
 
+Debe tener una interfaz de usuario
+
+Fue comentado que debe ser como Apple Pay, por lo tanto mi logica en como deberia ser el programa se basara en aquello
+El programa debera poder almacenar tarjetas de credito/debito y tener un balance propio del programa
+"recargar saldo" implica un balance y "pagar servicios" al encontrarse despues en el enunciado implica que lo-
+-primero no se refiere a saldo de telefonia.
+
+Se espera que el programa pueda recargar saldo, hacer retiros y transferencias a otros usuarios por alias
+
+Apple Wallet/Apple Pay
+
+Clases:
+    - Usuario
+    - Tarjeta
+    - Transacciones
+    - Servicios
+        -

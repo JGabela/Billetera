@@ -9,12 +9,15 @@ public class Main {
         int opcion=0;
         while(opcion!=4) {
             do {
+                //Imprime el menu de opciones para el usuario
                 System.out.println("**Menú de opciones**");
                 System.out.println("1.- Agregar Paiente");
                 System.out.println("2.- Agregar consulta");
                 System.out.println("3.- Ver Totales");
                 System.out.println("4.- Salir");
                 System.out.println("Ingrese la opcion deseada(1-4)");
+
+                //recibe la respuesta del usuario
                 opcion=entrada.nextInt();
             }
             while (opcion<=0 || opcion >=5);

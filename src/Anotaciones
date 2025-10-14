@@ -16,6 +16,8 @@ Apple Wallet/Apple Pay
 Clases:
     - Usuario
     - Tarjeta
-    - Transacciones
+    - Transacciones (gestionTransacciones)
     - Servicios
-        -
+        - Agua
+        - Electricidad
+        - Telefonia

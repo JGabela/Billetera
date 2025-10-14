@@ -27,17 +27,19 @@ public class Usuario {
         transacciones.add(transaccion);
     }
 
+    //Crea un nuevo y lo añade a la lista de contactos del usuario
     public void nuevoContactos(){
 
     }
 
+    //Confirma si el alias a buscar está en la lista de contactos del usuario
     public Contactos buscarContactos(String alias){
         for (Contactos contacto : contactos){
             if (contacto.getAlias().equals(alias)){
-                return contacto;
+                return contacto; //Si es que el alias esta en la lista de contactos
             }
         }
-        return null;
+        return null; //Si es que el alias no es parte de la lista de contactos
     }
 
 }

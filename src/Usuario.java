@@ -1,10 +1,9 @@
 import java.util.ArrayList; //Para guardar las transacciones realizadas por el usuario
 
 public class Usuario {
-    protected int id;
-    protected String nombre;
-    protected String apellido;
-    //private double saldo;
+    protected int cedula;
+    private String nombre;
+    private String clave;
 
     //Un array list para almacenar los contactos guardados del usuario
     private ArrayList<Contactos> contactos;
@@ -16,18 +15,11 @@ public class Usuario {
     private ArrayList<Tarjeta> tarjetas;
 
 
-    public Usuario(int id, String nombre, String apellido){
-        this.id = id;
+    public Usuario(int cedula, String nombre, String clave) {
+        this.cedula = cedula;
         this.nombre = nombre;
-        this.apellido = apellido;
-        //this.saldo = 0.0; //El saldo por defecto es 0
         this.contactos = new ArrayList<>(); //Se crea el array list de los contactos al usuario
         this.transacciones = new ArrayList<>(); //Se crea el array list de las transacciones al usuario
-    }
-
-    //Añade la transaccion a la lista de estas
-    public void nuevaTransaccion(gestionTransacciones transaccion){
-        transacciones.add(transaccion);
     }
 
     //Crea un nuevo y lo añade a la lista de contactos del usuario

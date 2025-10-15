@@ -1,44 +1,92 @@
+import Controlador.GestorUsuarios;
+import Modelo.Usuario;
+
 import java.util.Scanner;
 
-//Toca re-nombrar los metodos y lo q se imprime
-/*
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Scanner entrada=new Scanner(System.in);
-        GestionConsultas gestion=new GestionConsultas();
-        int opcion=0;
-        while(opcion!=4) {
-            do {
-                //Imprime el menu de opciones para el usuario
-                System.out.println("**Menú de opciones**");
-                System.out.println("1.- Agregar Paiente");
-                System.out.println("2.- Agregar consulta");
-                System.out.println("3.- Ver Totales");
-                System.out.println("4.- Salir");
-                System.out.println("Ingrese la opcion deseada(1-4)");
+        Scanner scanner = new Scanner(System.in);
+        GestorUsuarios gestor = new GestorUsuarios();
+        int opcion = 0;
 
-                //recibe la respuesta del usuario
-                opcion=entrada.nextInt();
-            }
-            while (opcion<=0 || opcion >=5);
+        System.out.println("=== BILLETERA VIRTUAL ===");
+
+        while(opcion != 3) {
+            mostrarMenu();
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar buffer
+
             switch(opcion) {
                 case 1:
-                    gestion.agregarPaciente();
+                    crearCuenta(scanner, gestor);
                     break;
                 case 2:
-                    gestion.agregarConsulta();
+                    iniciarSesion(scanner, gestor);
                     break;
                 case 3:
-                    gestion.calcularTotalxEspecialidad();
-                    gestion.calcularConsultasxEspecialidad();
-                    System.out.println("Total de descuentos: "+gestion.calcularTotalDescuentos());
-                    System.out.println("Total de consultas: "+gestion.calcularTotalconsultas());
+                    System.out.println("¡Gracias por usar la billetera virtual!");
                     break;
-                case 4:
-                    System.out.println("Adios...");
-                    break;
+                default:
+                    System.out.println("Opción inválida. Intente nuevamente.");
             }
+        }
+        scanner.close();
+    }
+
+    private static void mostrarMenu() {
+        System.out.println("\n--- MENÚ PRINCIPAL ---");
+        System.out.println("1. Crear cuenta");
+        System.out.println("2. Iniciar sesión");
+        System.out.println("3. Salir");
+        System.out.print("Seleccione una opción: ");
+    }
+
+    private static void crearCuenta(Scanner scanner, GestorUsuarios gestor) {
+        System.out.println("\n--- CREAR CUENTA ---");
+
+        System.out.print("Ingrese su cédula (10 dígitos): ");
+        String cedula = scanner.nextLine();
+
+        System.out.print("Nombre completo: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Usuario: ");
+        String usuario = scanner.nextLine();
+
+        System.out.print("Clave (mínimo 5 caracteres): ");
+        String clave = scanner.nextLine();
+
+
+        boolean exito = gestor.crearUsuario(cedula, usuario, clave, nombre);
+
+        if (exito) {
+            System.out.println("\n¡Cuenta creada exitosamente!");
+            System.out.println("Ahora puede iniciar sesión con su usuario y clave.");
+        } else {
+            System.out.println("\nNo se pudo crear la cuenta. Verifique los datos.");
+        }
+    }
+
+    private static void iniciarSesion(Scanner scanner, GestorUsuarios gestor) {
+        System.out.println("\n--- INICIAR SESIÓN ---");
+
+        System.out.print("Usuario: ");
+        String usuario = scanner.nextLine();
+
+        System.out.print("Clave: ");
+        String clave = scanner.nextLine();
+
+        Usuario usuarioLogueado = gestor.iniciarSesion(usuario, clave);
+
+        if (usuarioLogueado != null) {
+            System.out.println("\n¡Inicio de sesión exitoso!");
+            System.out.println("Bienvenido, " + usuarioLogueado.getNombre() + "!");
+            System.out.println("Su número de billetera es: " + usuarioLogueado.getNumeroBilletera());
+            System.out.println("Cédula: " + usuarioLogueado.getCedula());
+        } else {
+            System.out.println("Usuario o clave incorrectos.");
         }
     }
 }
-*/

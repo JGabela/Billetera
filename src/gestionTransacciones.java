@@ -9,7 +9,16 @@ public class gestionTransacciones {
     public void transferencia(Usuario usuario, double monto, String alias) {
 
     }
+
+    //Añade la transaccion a la lista de estas, hay que moverlo a gestionTransaccion
+    public void nuevaTransaccion(gestionTransacciones transaccion){
+        transacciones.add(transaccion);
+    }
+
 */
+
+
+
     //aumenta el saldo del usuario
     public void recargaSaldo(){
 

@@ -21,6 +21,10 @@ public class Tarjeta {
 
     }
 
+    public registrarTarjeta(){
+
+    }
+
 
     public void pagarTarjeta() {
 

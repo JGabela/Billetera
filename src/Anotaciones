@@ -13,11 +13,47 @@ Se espera que el programa pueda recargar saldo, hacer retiros y transferencias a
 
 Apple Wallet/Apple Pay
 
+Todo se relaciona al usuario
+
 Clases:
+    - Main (Menu)
+    - gestorUsuario
     - Usuario
+        -
+        - Contactos
     - Tarjeta
-    - Transacciones (gestionTransacciones)
+    - gestionTransacciones
+    - LectorCSV
+    - gestorServicios
     - Servicios
         - Agua
         - Electricidad
         - Telefonia
+
+Metodos:
+    - Usuarios:
+        - Usuarios()
+        - generarNumeroBilletera()
+    - gestorUsuarios:
+        - gestorUsuarios()
+        - crearUsuarios()
+        - iniciarSesion()
+        - existeUsuario()
+        - cedulaExiste()
+        - validarCedula()
+        - getTotalUsuarios()
+    - Contactos:
+        - Contactos()
+        - crearContacto()
+        - buscarContactos()
+    - Tarjetas:
+        - registrarTarjetas()
+        - verTarjetas()
+    - LectorCSV:
+        - leerDoc()
+    - gestionTransacciones:
+        - recargarSaldo()
+        - transferir()
+    - gestionServicios
+        - pagarServicio()
+    -

@@ -1,8 +1,16 @@
 public class Contactos extends Usuario{
+    private String alias; //alias de la persona guardada
+
+    public Contactos(String cedula, String nombre, String apellido) {
+        super(cedula, nombre, apellido);
+    }
+
+    /*
     private Usuario usuario; //usuario dueño del contacto
+    private String Cedula;
     private String alias; //alias del contacto
 
-    public Contactos(int id, String nombre, String apellido, String alias, Usuario usuario){
+    public Contactos(){
         super(id, nombre, apellido);
         this.alias = alias;
         this.usuario = usuario;
@@ -16,4 +24,5 @@ public class Contactos extends Usuario{
     public Usuario getUsuario(){
         return usuario;
     }
+    */
 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList; //Para guardar las transacciones realizadas por el usuario
 
 public class Usuario {
-    protected int id;
+    protected String cedula;
     protected String nombre;
     protected String apellido;
     //private double saldo;
@@ -16,8 +16,8 @@ public class Usuario {
     private ArrayList<Tarjeta> tarjetas;
 
 
-    public Usuario(int id, String nombre, String apellido){
-        this.id = id;
+    public Usuario(String cedula, String nombre, String apellido){
+        this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         //this.saldo = 0.0; //El saldo por defecto es 0
@@ -34,7 +34,7 @@ public class Usuario {
     public void nuevoContactos(){
 
     }
-
+/*
     //Confirma si el alias a buscar está en la lista de contactos del usuario
     public Contactos buscarContactos(String alias){
         for (Contactos contacto : contactos){
@@ -44,5 +44,6 @@ public class Usuario {
         }
         return null; //Si es que el alias no es parte de la lista de contactos
     }
+*/
 
 }

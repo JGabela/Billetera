@@ -1,4 +1,4 @@
-public class Tarjeta extends Contactos {
+public class Tarjeta {
 
     private String redPago;
     private String tipo; //credito o debito
@@ -8,7 +8,6 @@ public class Tarjeta extends Contactos {
     private int cvs;
 
     public Tarjeta(String redPago, String tipo, int numTarjeta, String nombrePropietario, String fechaCaducidad, int cvs) {
-        super();
         this.redPago = redPago;
         this.tipo = tipo;
         this.numTarjeta = numTarjeta;

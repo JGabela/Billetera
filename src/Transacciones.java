@@ -15,19 +15,15 @@ public class transacciones {
     }
 
     protected void procesarRecarga(){
-
     }
 
     protected void procesarTransferencia(){
-
     }
 
     protected void procesarRetiro(){
-
     }
 
     protected void procesarPagoServicios(){
-
     }
 
     //Getters

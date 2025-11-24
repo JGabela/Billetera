@@ -1,6 +1,5 @@
 import Controlador.GestorUsuarios;
 import Modelo.Usuario;
-
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

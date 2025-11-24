@@ -1,4 +1,5 @@
-public class Servicios {
+public class PagarServicio {
+
        private String idServicio;
     private String nombre;
     private String empresa;

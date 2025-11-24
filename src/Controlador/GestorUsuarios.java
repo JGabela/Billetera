@@ -1,7 +1,5 @@
 package Controlador;
-
 import Modelo.Usuario;
-
 import java.util.ArrayList;
 
 public class GestorUsuarios {
@@ -83,7 +81,4 @@ public class GestorUsuarios {
         return cedula != null && cedula.matches("\\d{10}");
     }
 
-    public int getTotalUsuarios() {
-        return usuarios.size();
-    }
 }

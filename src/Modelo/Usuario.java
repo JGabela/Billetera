@@ -17,13 +17,11 @@ public class Usuario {
         this.numeroBilletera = generarNumeroBilletera();
     }
 
-    //genera un numero random para la billetera
     private int generarNumeroBilletera() {
         Random random = new Random();
         return 100000 + random.nextInt(900000);
     }
 
-    //getters
     public String getCedula() {
         return cedula;
     }

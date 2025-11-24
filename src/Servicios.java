@@ -31,5 +31,8 @@ public class Servicios {
     }
 
     @Override
+  public String toString() {
+        return "Servicio: " + nombre + " | Empresa: " + empresa + " | ID: " + idServicio;
+    }
 
 }

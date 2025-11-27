@@ -1,39 +1,45 @@
-public class PagarServicio {
+public abstract class PagarServicio {
+    protected String idServicio;
+    protected String nombre;
+    protected String empresa;
 
-    private String idServicio;
-    private String nombre;
-    private String empresa;
+    public PagarServicio(){}
 
-    public PagarServicio(String idServicio, String nombre, String empresa) {
+    public PagarServicio(String idServicio){
+        this.idServicio = idServicio;
+        this.nombre = "No asignado";
+        this.empresa = "No asignada";
+    }
+
+    public PagarServicio(String idServicio, String nombre){
+        this.idServicio = idServicio;
+        this.nombre = nombre;
+    }
+
+
+    public PagarServicio(String idServicio, String nombre, String empresa){
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.empresa = empresa;
     }
 
-    public PagarServicio(String nombre, String empresa) {
-        this.nombre = nombre;
-        this.empresa = empresa;
-    }
-
-    public PagarServicio(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getIdServicio() {
+    public String getIdServicio(){
         return idServicio;
     }
 
-    public String getNombre() {
+    public String getNombre(){
         return nombre;
     }
 
-    public String getEmpresa() {
+    public String getEmpresa(){
         return empresa;
     }
 
+    public abstract String generarDetallePago();
+
     @Override
-    public String toString() {
-        return "Servicio: " + nombre + " | Empresa: " + empresa + " | ID: " + idServicio;
-}
+    public String toString(){
+        return "Servicio: " + nombre + " Empresa: " + empresa + "ID: " + idServicio;
+    }
 
 }

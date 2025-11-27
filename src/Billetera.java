@@ -165,4 +165,32 @@ public class Billetera {
         System.out.print("Presione Enter para continuar...");
         scanner.nextLine();
     }
+    private static Luz crearLuz(Scanner sc){
+        System.out.print("idServicio: "); String id = sc.nextLine();
+        System.out.print("nombre: "); String nombre = sc.nextLine();
+        System.out.print("empresa: "); String emp = sc.nextLine();
+        System.out.print("codigoCliente: "); String cc = sc.nextLine();
+        System.out.print("mes: "); String mes = sc.nextLine();
+        return new Luz(id, nombre, emp, cc, mes);
+    }
+
+    private static Agua crearAgua(Scanner sc){
+        System.out.print("idServicio: "); String id = sc.nextLine();
+        System.out.print("nombre: "); String nombre = sc.nextLine();
+        System.out.print("empresa: "); String emp = sc.nextLine();
+        System.out.print("codigoSuministro: "); String cs = sc.nextLine();
+        System.out.print("referencia: "); String ref = sc.nextLine();
+        return new Agua(id, nombre, emp, cs, ref);
+    }
+
+    private static Telefonia crearTelefonia(Scanner sc){
+        System.out.print("idServicio: "); String id = sc.nextLine();
+        System.out.print("nombre: "); String nombre = sc.nextLine();
+        System.out.print("empresa: "); String emp = sc.nextLine();
+        System.out.print("nis: "); String nis = sc.nextLine();
+        System.out.print("periodoFacturacion: "); String per = sc.nextLine();
+        return new Telefonia(id, nombre, emp, nis,per);
+}
+
+
 }

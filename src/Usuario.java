@@ -1,5 +1,4 @@
-package Modelo;
-
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Usuario {
@@ -8,6 +7,11 @@ public class Usuario {
     private String usuario;
     private String clave;
     private String nombre;
+    public ArrayList<Tarjeta> Tarjetas;
+
+    public ArrayList<Tarjeta>  getTarjetas(){
+        return Tarjetas;
+    }
 
     public Usuario(String cedula, String usuario, String clave, String nombre) {
         this.cedula = cedula;

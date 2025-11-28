@@ -1,6 +1,3 @@
-import Controlador.GestorUsuarios;
-import Modelo.Usuario;
-
 import java.util.Scanner;
 
 public class Billetera {
@@ -21,7 +18,10 @@ public class Billetera {
                     crearCuenta(scanner, gestor);
                     break;
                 case 2:
-                    iniciarSesion(scanner, gestor);
+                    Usuario usuarioLogueado = iniciarSesion(scanner, gestor);
+                    if (usuarioLogueado != null) {
+                        mostrarMenuUsuario(scanner, usuarioLogueado);
+                    }
                     break;
                 case 3:
                     System.out.println("¡Gracias por usar la billetera virtual!");
@@ -190,7 +190,7 @@ public class Billetera {
         System.out.print("nis: "); String nis = sc.nextLine();
         System.out.print("periodoFacturacion: "); String per = sc.nextLine();
         return new Telefonia(id, nombre, emp, nis,per);
-}
+    }
 
 
 }

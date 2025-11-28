@@ -1,5 +1,3 @@
-package Controlador;
-import Modelo.Usuario;
 import java.util.ArrayList;
 
 public class GestorUsuarios {

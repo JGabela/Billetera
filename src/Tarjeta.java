@@ -1,3 +1,4 @@
+
 public class Tarjeta {
 
     private String redPago;
@@ -6,6 +7,9 @@ public class Tarjeta {
     private String nombrePropietario;
     private String fechaCaducidad;
     private int cvs;
+    public double Saldo;
+
+
 
     public Tarjeta(String redPago, String tipo, int numTarjeta, String nombrePropietario, String fechaCaducidad, int cvs) {
         this.redPago = redPago;

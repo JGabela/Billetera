@@ -99,7 +99,7 @@ public class Billetera {
             System.out.println("Bienvenido: " + usuario.getNombre());
             System.out.println("N° Billetera: " + usuario.getNumeroBilletera());
             System.out.println("1. Tarjetas");
-            System.out.println("2. Pagar Servicios");
+            System.out.println("2. Servicios");
             System.out.println("3. Contactos");
             System.out.println("4. Transacciones");
             System.out.println("5. Cerrar sesión");
@@ -113,7 +113,7 @@ public class Billetera {
                     menuTarjetas(scanner, usuario);
                     break;
                 case 2:
-                    menuPagarServicios(scanner, usuario);
+                    menuServicios(scanner, usuario);
                     break;
                 case 3:
                     menuContactos(scanner, usuario);
@@ -139,8 +139,8 @@ public class Billetera {
         scanner.nextLine();
     }
 
-    private static void menuPagarServicios(Scanner scanner, Usuario usuario) {
-        System.out.println("\n--- PAGAR SERVICIOS ---");
+    private static void menuServicios(Scanner scanner, Usuario usuario) {
+        System.out.println("\n--- SERVICIOS ---");
         System.out.println("Funcionalidad en desarrollo...");
         System.out.println("Usuario: " + usuario.getNombre());
         System.out.println("Aquí podrás pagar servicios como luz, agua, teléfono, etc.");

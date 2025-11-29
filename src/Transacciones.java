@@ -78,6 +78,7 @@ public class Transacciones {
 
     //Getters
     public String getIdTransaccion() {
+
         return idTransaccion;
     }
     public String getTipo() {

@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Telefonia extends PagarServicio {
     private String nis;
     private String periodoFacturacion;
+    private ArrayList<PagarServicio> servicio;
 
     public Telefonia() { super(); }
     public Telefonia(String idServicio) { super(idServicio); }
@@ -11,6 +14,10 @@ public class Telefonia extends PagarServicio {
         super(idServicio, nombre, empresa);
         this.nis = nis;
         this.periodoFacturacion = periodoFacturacion;
+    }
+
+    private void crearServicioTelefoniaPred(){
+        servicio.add(new Telefonia("20", "Milton", "cnt", "9", "un mes"));
     }
 
     @Override

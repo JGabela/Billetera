@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Billetera {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         GestorUsuarios gestor = new GestorUsuarios();
+        GestorTarjetas gestorTarjetas = new GestorTarjetas();
         int opcion = 0;
 
         System.out.println("=== BILLETERA VIRTUAL ===");
@@ -20,7 +22,7 @@ public class Billetera {
                 case 2:
                     Usuario usuarioLogueado = iniciarSesion(scanner, gestor);
                     if (usuarioLogueado != null) {
-                        mostrarMenuUsuario(scanner, usuarioLogueado);
+                        mostrarMenuUsuario(scanner, usuarioLogueado, gestorTarjetas);
                     }
                     break;
                 case 3:
@@ -91,7 +93,7 @@ public class Billetera {
 
     //otro menu
 
-    private static void mostrarMenuUsuario(Scanner scanner, Usuario usuario) {
+    private static void mostrarMenuUsuario(Scanner scanner, Usuario usuario, GestorTarjetas gestorTarjetas) {
         int opcion = 0;
 
         while(opcion != 5) {
@@ -110,7 +112,7 @@ public class Billetera {
 
             switch(opcion) {
                 case 1:
-                    menuTarjetas(scanner, usuario);
+                    menuTarjetas(scanner, usuario, gestorTarjetas);
                     break;
                 case 2:
                     menuServicios(scanner, usuario);
@@ -130,20 +132,200 @@ public class Billetera {
         }
     }
 
-    private static void menuTarjetas(Scanner scanner, Usuario usuario) {
-        System.out.println("\n--- GESTIÓN DE TARJETAS ---");
-        System.out.println("Funcionalidad en desarrollo...");
-        System.out.println("Usuario: " + usuario.getNombre());
-        System.out.println("Aquí podrás agregar, eliminar y ver tus tarjetas.");
+    private static void menuTarjetas(Scanner scanner, Usuario usuario, GestorTarjetas gestorTarjetas) {
+        int opcion = 0;
+
+        while(opcion != 3) {
+            System.out.println("\n--- GESTIÓN DE TARJETAS ---");
+            System.out.println("Usuario: " + usuario.getNombre());
+            System.out.println("1. Ver mis tarjetas");
+            System.out.println("2. Registrar nueva tarjeta");
+            System.out.println("3. Volver al menú anterior");
+            System.out.print("Seleccione una opción: ");
+
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar buffer
+
+            switch(opcion) {
+                case 1:
+                    //System.out.println("Funcionalidad en desarrollo...");
+                    menuVerTarjetas(scanner, usuario, gestorTarjetas);
+                    break;
+                case 2:
+                    menuRegistrarTarjeta(scanner, usuario, gestorTarjetas);
+                    break;
+                case 3:
+                    System.out.println("Volviendo al menú anterior...");
+                    break;
+                default:
+                    System.out.println("Opción inválida. Intente nuevamente.");
+            }
+        }
+    }
+
+    private static void menuVerTarjetas(Scanner scanner, Usuario usuario, GestorTarjetas gestorTarjetas) {
+        int opcion = 0;
+
+        while(opcion != 3) {
+            System.out.println("\n--- MIS TARJETAS ---");
+            gestorTarjetas.mostrarTarjetas(usuario);
+            System.out.println("\n1. Ver detalles completos");
+            System.out.println("2. Eliminar tarjeta");
+            System.out.println("3. Volver al menú de tarjetas");
+            System.out.print("Seleccione una opción: ");
+
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+
+            switch(opcion) {
+                case 1:
+                    verDetallesCompletosTarjetas(usuario, gestorTarjetas);
+                    break;
+                case 2:
+                    eliminarTarjetaMenu(scanner, usuario, gestorTarjetas);
+                    break;
+                case 3:
+                    System.out.println("Volviendo al menú de tarjetas...");
+                    break;
+                default:
+                    System.out.println("Opción inválida. Intente nuevamente.");
+            }
+        }
+    }
+
+    private static void menuRegistrarTarjeta(Scanner scanner, Usuario usuario, GestorTarjetas gestorTarjetas) {
+        System.out.println("\n--- REGISTRAR NUEVA TARJETA ---");
+
+        System.out.print("Red de pago (Visa/Mastercard/Amex): ");
+        String redPago = scanner.nextLine();
+
+        System.out.print("Tipo (credito/debito): ");
+        String tipo = scanner.nextLine();
+
+        System.out.print("Número de tarjeta (16 dígitos): ");
+        String numTarjeta = scanner.nextLine();
+        scanner.nextLine();
+
+        // Validar que el número tenga 16 dígitos
+        if (String.valueOf(numTarjeta).length() != 16) {
+            System.out.println("Error: El número de tarjeta debe tener 16 dígitos.");
+            System.out.print("Presione Enter para continuar...");
+            scanner.nextLine();
+            return;
+        }
+
+        System.out.print("Nombre del propietario: ");
+        String nombrePropietario = scanner.nextLine();
+
+        System.out.print("Fecha de caducidad (MM/YY): ");
+        String fechaCaducidad = scanner.nextLine();
+
+        System.out.print("CVS (3 dígitos): ");
+        int cvs = scanner.nextInt();
+        scanner.nextLine();
+
+        // Validar que el CVS tenga 3 dígitos
+        if (String.valueOf(cvs).length() != 3) {
+            System.out.println("Error: El CVS debe tener 3 dígitos.");
+            System.out.print("Presione Enter para continuar...");
+            scanner.nextLine();
+            return;
+        }
+
+        Tarjeta nuevaTarjeta = new Tarjeta(redPago, tipo, numTarjeta, nombrePropietario, fechaCaducidad, cvs);
+        boolean exito = gestorTarjetas.agregarTarjeta(usuario, nuevaTarjeta);
+
+        if (exito) {
+            System.out.println("¡Tarjeta registrada exitosamente!");
+        } else {
+            System.out.println("No se pudo registrar la tarjeta.");
+        }
+
         System.out.print("Presione Enter para continuar...");
         scanner.nextLine();
     }
+
+    private static void verDetallesCompletosTarjetas(Usuario usuario, GestorTarjetas gestorTarjetas) {
+        System.out.println("\n--- DETALLES COMPLETOS DE TARJETAS ---");
+        java.util.ArrayList<Tarjeta> tarjetas = gestorTarjetas.obtenerTarjetas(usuario);
+
+        if (tarjetas.isEmpty()) {
+            System.out.println("No tienes tarjetas registradas.");
+        } else {
+            for (int i = 0; i < tarjetas.size(); i++) {
+                Tarjeta tarjeta = tarjetas.get(i);
+                System.out.println("\n=== Tarjeta " + (i + 1) + " ===");
+                System.out.println("Red de pago: " + tarjeta.getRedPago());
+                System.out.println("Tipo: " + tarjeta.getTipo());
+                System.out.println("Número completo: " + tarjeta.getNumTarjeta());
+                System.out.println("Propietario: " + tarjeta.getNombrePropietario());
+                System.out.println("Fecha de caducidad: " + tarjeta.getFechaCaducidad());
+                System.out.println("CVS: " + tarjeta.getCvs());
+                System.out.println("Saldo: $" + tarjeta.getSaldo());
+            }
+        }
+
+        System.out.print("\nPresione Enter para continuar...");
+        new Scanner(System.in).nextLine();
+    }
+
+    private static void eliminarTarjetaMenu(Scanner scanner, Usuario usuario, GestorTarjetas gestorTarjetas) {
+        System.out.println("\n--- ELIMINAR TARJETA ---");
+        java.util.ArrayList<Tarjeta> tarjetas = gestorTarjetas.obtenerTarjetas(usuario);
+
+        if (tarjetas.isEmpty()) {
+            System.out.println("No tienes tarjetas para eliminar.");
+            System.out.print("Presione Enter para continuar...");
+            scanner.nextLine();
+            return;
+        }
+
+        // Mostrar tarjetas numeradas
+        System.out.println("Tus tarjetas:");
+        for (int i = 0; i < tarjetas.size(); i++) {
+            Tarjeta tarjeta = tarjetas.get(i);
+            String ultimosDigitos = tarjeta.getNumTarjeta().substring(12);
+            System.out.println((i + 1) + ". " + tarjeta.getTipo() + " " +
+                    tarjeta.getRedPago() + " - ****" + ultimosDigitos);
+        }
+
+        System.out.print("Seleccione el número de la tarjeta a eliminar (0 para cancelar): ");
+        int seleccion = scanner.nextInt();
+        scanner.nextLine();
+
+        if (seleccion == 0) {
+            System.out.println("Operación cancelada.");
+            return;
+        }
+
+        if (seleccion < 1 || seleccion > tarjetas.size()) {
+            System.out.println("Selección inválida.");
+            return;
+        }
+
+        Tarjeta tarjetaAEliminar = tarjetas.get(seleccion - 1);
+        System.out.print("¿Está seguro de eliminar la tarjeta ****" +
+                tarjetaAEliminar.getNumTarjeta().substring(12) +
+                "? (s/n): ");
+        String confirmacion = scanner.nextLine();
+
+        if (confirmacion.equalsIgnoreCase("s")) {
+            gestorTarjetas.eliminarTarjeta(usuario, tarjetaAEliminar.getNumTarjeta());
+        } else {
+            System.out.println("Operación cancelada.");
+        }
+
+        System.out.print("Presione Enter para continuar...");
+        scanner.nextLine();
+    }
+
 
     private static void menuServicios(Scanner scanner, Usuario usuario) {
         System.out.println("\n--- SERVICIOS ---");
         System.out.println("Funcionalidad en desarrollo...");
         System.out.println("Usuario: " + usuario.getNombre());
         System.out.println("Aquí podrás pagar servicios como luz, agua, teléfono, etc.");
+        MainCrearServicio.menuCrearServicio();
         System.out.print("Presione Enter para continuar...");
         scanner.nextLine();
     }
@@ -165,32 +347,4 @@ public class Billetera {
         System.out.print("Presione Enter para continuar...");
         scanner.nextLine();
     }
-    private static Luz crearLuz(Scanner sc){
-        System.out.print("idServicio: "); String id = sc.nextLine();
-        System.out.print("nombre: "); String nombre = sc.nextLine();
-        System.out.print("empresa: "); String emp = sc.nextLine();
-        System.out.print("codigoCliente: "); String cc = sc.nextLine();
-        System.out.print("mes: "); String mes = sc.nextLine();
-        return new Luz(id, nombre, emp, cc, mes);
-    }
-
-    private static Agua crearAgua(Scanner sc){
-        System.out.print("idServicio: "); String id = sc.nextLine();
-        System.out.print("nombre: "); String nombre = sc.nextLine();
-        System.out.print("empresa: "); String emp = sc.nextLine();
-        System.out.print("codigoSuministro: "); String cs = sc.nextLine();
-        System.out.print("referencia: "); String ref = sc.nextLine();
-        return new Agua(id, nombre, emp, cs, ref);
-    }
-
-    private static Telefonia crearTelefonia(Scanner sc){
-        System.out.print("idServicio: "); String id = sc.nextLine();
-        System.out.print("nombre: "); String nombre = sc.nextLine();
-        System.out.print("empresa: "); String emp = sc.nextLine();
-        System.out.print("nis: "); String nis = sc.nextLine();
-        System.out.print("periodoFacturacion: "); String per = sc.nextLine();
-        return new Telefonia(id, nombre, emp, nis,per);
-    }
-
-
 }

@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Agua extends PagarServicio {
     private String codigoSuministro;
     private String referenciaPago;
+    private ArrayList<PagarServicio> servicio;
 
     public Agua() { super(); }
     public Agua(String idServicio) { super(idServicio); }
@@ -11,6 +14,10 @@ public class Agua extends PagarServicio {
         super(idServicio, nombre, empresa);
         this.codigoSuministro = codigoSuministro;
         this.referenciaPago = referenciaPago;
+    }
+
+    private void crearServicioAguaPred(){
+        servicio.add(new Agua("32", "Ignacio", "amagua", "987", "paypal"));
     }
 
     @Override
